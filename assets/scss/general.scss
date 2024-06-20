@@ -8,8 +8,8 @@
 /* Generic content, such as the index list pages */
 /* ------------------------------------------------------------------------ */
 :root * {
-      text-align: left;
-      text-rendering: optimizeLegibility;
+  text-align: left;
+  text-rendering: optimizeLegibility;
 }
 
 :focus {
@@ -19,34 +19,35 @@
 }
 
 ::selection {
-    color: #fffff8;
-    background-color: #404040;
+  color: #fffff8;
+  background-color: #404040;
 }
 
+
 a.heading-anchor {
-    display: none;
-    visibility: collapse;
+  display: none;
+  visibility: collapse;
 }
 
 h2 {
-    margin-top: 5.5rem;
+  margin-top: 5.5rem;
 }
 
-h2:hover > a.heading-anchor,
-h3:hover > a.heading-anchor {
-    display: inline;
-    visibility: visible;
+h2:hover>a.heading-anchor,
+h3:hover>a.heading-anchor {
+  display: inline;
+  visibility: visible;
 }
 
 hr {
-    text-align: left;
-    margin-left: 0;
-    margin-top: 1.4rem;
-    margin-bottom: 1.4rem;
-    width: 75%;
-    max-width: 45rem;
-    border-style: solid none none none;
-    border-color: #111;
+  text-align: left;
+  margin-left: 0;
+  margin-top: 1.4rem;
+  margin-bottom: 1.4rem;
+  width: 75%;
+  max-width: 45rem;
+  border-style: solid none none none;
+  border-color: #111;
 }
 
 kbd {
@@ -57,37 +58,55 @@ kbd {
 }
 
 mark {
-    background: #f0d9bb;
+  background: #f0d9bb;
+}
+
+@media (prefers-color-scheme: dark) {
+  ::selection {
+    color: #404040;
+    background-color: #fffff8;
+  }
+
+  hr {
+    border-color: #fffff8;
+  }
+
+  kbd {
+    border: 1px #fffff8 solid
+  }
 }
 
 /* ------------------------------------------------------------------------ */
 /* Styling for listing pages. */
 /* ------------------------------------------------------------------------ */
 .list-page {
-    ul {
-        list-style-type: none;
-        margin: -0.25em;
-        width: 87.5%;
-        max-width: 45rem;
-    }
-    li {
-        margin: 0;
-        /*font-size: 95%;*/
-    }
+  ul {
+    list-style-type: none;
+    margin: -0.25em;
+    width: 87.5%;
+    max-width: 45rem;
+  }
+
+  li {
+    margin: 0;
+    /*font-size: 95%;*/
+  }
 }
+
 .list-page .list-date {
-    display: inline;
-    font-size: 0.75em;
-    /* padding-right: 2em; */
-    /* margin-right: 2em; */
+  display: inline;
+  font-size: 0.75em;
+  /* padding-right: 2em; */
+  /* margin-right: 2em; */
 }
 
 table:not(.lntable) {
-    margin-top: 1.4em;
-    font-size: 1.4rem;
-    width: auto; /* making booktabs style tables the unstyled default in case someone uses Markdown styling */
-    /* margin: 0 auto; */
-    /* border-spacing: 0px; */
+  margin-top: 1.4em;
+  font-size: 1.4rem;
+  width: auto;
+  /* making booktabs style tables the unstyled default in case someone uses Markdown styling */
+  /* margin: 0 auto; */
+  /* border-spacing: 0px; */
 }
 
 table:not(.lntable) tr th {
@@ -97,40 +116,48 @@ table:not(.lntable) tr th {
 
 table:not(.lntable) tr th,
 table:not(.lntable) tr td {
-    padding-right: 0.5rem;
+  padding-right: 0.5rem;
 }
 
 table.lntable {
-    td.lntd {
-        padding: 0em;
-    }
-    border-spacing: 0;
-    padding: 0;
+  td.lntd {
+    padding: 0em;
+  }
+
+  border-spacing: 0;
+  padding: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  table:not(.lntable) tr th {
+    border-bottom: 1px solid #fffff8;
+    text-transform: uppercase;
+  }
 }
 
 /* ------------------------------------------------------------------------ */
 /* Styling for footnotes. */
 /* ------------------------------------------------------------------------ */
 .footnotes hr {
-    margin-top: 4.4em;
+  margin-top: 4.4em;
 }
 
 .footnotes ol {
-    width: 55%;
-    margin-top: 4.4rem;
+  width: 55%;
+  margin-top: 4.4rem;
 
-    li {
-        p {
-            width: 100%;
-            margin: 0;
-            padding: 0;
+  li {
+    p {
+      width: 100%;
+      margin: 0;
+      padding: 0;
 
-            a.footnote-backref {
-                font-size: 1.2rem;
-                text-decoration: none;
-            }
-        }
+      a.footnote-backref {
+        font-size: 1.2rem;
+        text-decoration: none;
+      }
     }
+  }
 }
 
 /* ------------------------------------------------------------------------ */
@@ -144,9 +171,9 @@ table.lntable {
 
 mjx-container[jax="CHTML"][display="true"],
 .katex-display {
-      overflow: auto;
-      overflow-y: hidden;
-/*     -ms-overflow-style: none;
+  overflow: auto;
+  overflow-y: hidden;
+  /*     -ms-overflow-style: none;
     scrollbar-width: none; */
 }
 
@@ -156,18 +183,19 @@ mjx-container[jax="CHTML"][display="true"],
 /* ------------------------------------------------------------------------ */
 .marginnote .marginnote-ind,
 .sidenote .sidenote-number {
-    margin-right: 5px;
+  margin-right: 5px;
 }
 
 /* prevent over-crowding */
 
-.sidenote, .marginnote {
-    margin-bottom: 1rem;
+.sidenote,
+.marginnote {
+  margin-bottom: 1rem;
 }
 
 .sidenote code,
 .marginnote code {
-    font-size: 0.9rem;
+  font-size: 0.9rem;
 }
 
 /* ------------------------------------------------------------------------ */
@@ -190,15 +218,16 @@ mjx-container[jax="CHTML"][display="true"],
   margin-left: 2rem;
 }
 
-.row .column > p:first-child {
+.row .column>p:first-child {
   margin-top: 0;
 }
 
-.row .column > p:last-child {
+.row .column>p:last-child {
   margin-bottom: 0;
 }
 
 @media (min-width: 760px) {
+
   /* desktop */
   /* https://stackoverflow.com/a/62086985 */
   .row {
@@ -209,26 +238,27 @@ mjx-container[jax="CHTML"][display="true"],
     gap: 1.4rem;
     margin: 0 0 1.4rem 0;
   }
+
   .row .column {
     margin-left: 0 !important;
   }
 }
 
-.column > p {
+.column>p {
   width: 100%;
 }
 
-.column > p > label.margin-toggle.marginnote-ind {
+.column>p>label.margin-toggle.marginnote-ind {
   display: inline;
 }
 
-.column > p > .sidenote,
-.column > p > .marginnote {
+.column>p>.sidenote,
+.column>p>.marginnote {
   display: none;
 }
 
-.column > p > .margin-toggle:checked + .sidenote,
-.column > p > .margin-toggle:checked + .marginnote {
+.column>p>.margin-toggle:checked+.sidenote,
+.column>p>.margin-toggle:checked+.marginnote {
   display: block;
   float: left;
   left: 1rem;
@@ -243,14 +273,16 @@ mjx-container[jax="CHTML"][display="true"],
 /* Styling for buttons. */
 /* ------------------------------------------------------------------------ */
 .btn {
-    display: inline-block;
-    margin-top: 1.4rem;
+  display: inline-block;
+  margin-top: 1.4rem;
 }
+
 .btn button {
-    font-size: 1.4rem;
+  font-size: 1.4rem;
 }
+
 .btn button .icon {
-    font-size: 1.2rem;
+  font-size: 1.2rem;
 }
 
 /* ------------------------------------------------------------------------ */
@@ -259,17 +291,20 @@ mjx-container[jax="CHTML"][display="true"],
 
 /* reduce zh & ja font-size to match en */
 
-p:lang(zh), span:lang(zh),
-p:lang(ja), span:lang(ja), {
-    font-size: 1.2rem;
+p:lang(zh),
+span:lang(zh),
+p:lang(ja),
+span:lang(ja),
+{
+font-size: 1.2rem;
 }
 
 .sidenote:lang(zh),
 .marginnote:lang(zh) {
-    font-size: 0.5rem;
+  font-size: 0.5rem;
 }
 
 .sidenote:lang(ja),
 .marginnote:lang(ja) {
-    font-size: 0.9rem;
+  font-size: 0.9rem;
 }
