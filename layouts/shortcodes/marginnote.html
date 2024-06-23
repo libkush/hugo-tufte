@@ -5,8 +5,7 @@
 {{- end -}}
 {{- $label := $.Page.Scratch.Get "marginnoteCounter" -}}
 {{- $ind := .Get "ind" | default .Site.Params.marginNoteInd -}}
-<label for="marginnote-{{ $label }}" class="margin-toggle marginnote-ind">{{ $ind }}</label>
-<input type="checkbox" id="marginnote-{{ $label }}" class="margin-toggle"/>
+<label class="margin-toggle marginnote-ind">margin note toggle <input type="checkbox" id="marginnote-{{ $label }}" class="margin-toggle"/></label>
 <span class="marginnote"{{ with .Get "lang" }} lang="{{ . }}"{{ end }}>
 {{ .Inner | markdownify}}
 </span>

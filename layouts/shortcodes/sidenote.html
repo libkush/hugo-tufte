@@ -4,8 +4,7 @@
 {{- $.Page.Scratch.Set "sidenoteCounter" 1 -}}
 {{- end -}}
 {{- $label := $.Page.Scratch.Get "sidenoteCounter" -}}
-<label for="sidenote-{{ $label }}" class="margin-toggle sidenote-number">({{ $label }})</label>
-<input type="checkbox" id="sidenote-{{ $label }}" class="margin-toggle"/>
+<label class="margin-toggle sidenote-number">({{ $label }}) <input type="checkbox" id="sidenote-{{ $label }}" class="margin-toggle"/></label>
 <span class="sidenote"{{ with .Get "lang" }} lang="{{ . }}"{{ end }}>
 <span class="sidenote-number">({{ $label }})</span>{{ .Inner | markdownify }}
 </span>
