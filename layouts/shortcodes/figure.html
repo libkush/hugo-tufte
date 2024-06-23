@@ -44,7 +44,8 @@
 {{- else -}}<!--  child for margin or normal (begin) -->
 
   {{- if or (or (.Get "caption") (.Get "attr")) (eq $type "margin") -}}<!-- begin marginnote -->
-    <label class="margin-toggle marginnote-ind">margin note toggle <input type="checkbox" id="{{ $label }}" class="margin-toggle"/></label>
+    <label for="{{ $label }}" class="margin-toggle marginnote-ind">{{ $ind }}</label>
+    <input aria-label="margin note toggle button" type="checkbox" id="{{ $label }}" class="margin-toggle"/>
     <span class="marginnote">
   {{- end -}}
 
