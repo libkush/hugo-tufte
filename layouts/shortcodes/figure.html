@@ -1,6 +1,24 @@
 {{ $alt := .Get "alt" | default "Image" }}
 {{ $type := .Get "type" | default "normal" }}
 {{- $ind := .Get "ind" | default .Site.Params.marginNoteInd -}}
+{{- $quality := .Get "quality" | default "photo" -}}
+{{- $imgurl := cast.ToString (.Get "src") -}}
+{{- $image := resources.GetRemote $imgurl -}}
+<!-- get the image after processing -->
+{{- if hasPrefix $imgurl "http" -}}
+{{- $image = resources.GetRemote $imgurl -}}
+{{ else }}
+{{- $image = .Page.Resources.Get $imgurl -}}
+{{- end -}}
+{{/*  {{- fmt.Warnf "%#v" $image.Height -}}  */}}
+{{- $keepsize := .Get "type" -}}
+
+{{- if eq $keepsize "full" -}}
+{{- $image = $image.Resize (print (printf "%dx webp " $image.Width) $quality) -}}
+{{- else -}}
+{{- $image = $image.Resize (print "600x webp " $quality) -}}
+{{- end -}}
+{{/*  {{- fmt.Warnf "%#v" $image.RelPermalink -}}  */}}
 
 <!-- get a default label just in case -->
 {{- $label := printf "%#v" (add .Ordinal 1) | printf "%s%s" "marginfig-" | printf "%s" -}}
@@ -20,20 +38,19 @@
 <!-- begin child elements -->
 {{- if eq $type "full" -}}<!-- child for full -->
   {{ with .Get "link" }}<a href="{{ . }}">{{ end }}
-  <img src="{{ .Get "src" }}" alt="{{ $alt }}">
+  <img data-src="{{ $image.RelPermalink }}" width="{{ $image.Width }}" height="{{ $image.Height }}" alt="{{ $alt }}" class="lazyload">
   {{ if .Get "link" }}</a>{{ end }}
   <figcaption>
 {{- else -}}<!--  child for margin or normal (begin) -->
 
   {{- if or (or (.Get "caption") (.Get "attr")) (eq $type "margin") -}}<!-- begin marginnote -->
-    <label for="{{ $label }}" class="margin-toggle marginnote-ind">{{ $ind }}</label>
-    <input type="checkbox" id="{{ $label }}" class="margin-toggle"/>
+    <label class="margin-toggle marginnote-ind">margin note toggle <input type="checkbox" id="{{ $label }}" class="margin-toggle"/></label>
     <span class="marginnote">
   {{- end -}}
 
   {{- if eq $type "margin" -}}<!-- margin image inside marginnote -->
     {{ with .Get "link" }}<a href="{{ . }}">{{ end }}
-    <img src="{{ .Get "src" }}" alt="{{ $alt }}">
+    <img data-src="{{ $image.RelPermalink }}" width="{{ $image.Width }}" height="{{ $image.Height }}" alt="{{ $alt }}" class="lazyload">
     {{ if .Get "link" }}</a>{{ end }}
   {{- end -}}
 
@@ -52,7 +69,7 @@
 
 {{ if (eq $type "normal") }}
   {{ with .Get "link" }}<a href="{{ . }}">{{ end }}
-  <img src="{{ .Get "src" }}" alt="{{ $alt }}">
+  <img data-src="{{ $image.RelPermalink }}" width="{{ $image.Width }}" height="{{ $image.Height }}" alt="{{ $alt }}" class="lazyload">
   {{ if .Get "link" }}</a>{{ end }}
 {{ end }}
 
