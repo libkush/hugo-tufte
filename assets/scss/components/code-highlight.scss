@@ -1,4 +1,5 @@
 $ht-code-border-radius: .4em;
+
 .highlight {
     width: 50%;
     overflow-x: scroll;
@@ -27,9 +28,8 @@ $ht-code-border-radius: .4em;
         // border-radius: $ht-code-border-radius / 2;
         display: block;
 
-        &::before{
+        &::before {
             content: "> ";
-            // font-family: "Noto Emoji";
             font-family: inherit;
             position: absolute;
             left: 0;
@@ -37,8 +37,9 @@ $ht-code-border-radius: .4em;
         }
     }
 
-    &>div.chroma>table.lntable{
+    &>div.chroma>table.lntable {
         overflow: initial;
+
         // margin: $ht-code-border-radius 0 $ht-code-border-radius 0;
         & td:first-of-type {
             & span:not(& span>span) {
@@ -58,7 +59,7 @@ $ht-code-border-radius: .4em;
         margin-bottom: .5em;
         margin-left: .5em;
 
-        &>span.hl{
+        &>span.hl {
             margin-left: -.5em;
             padding-left: .5em;
         }
