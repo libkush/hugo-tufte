@@ -4,7 +4,9 @@
   <script>{{ . | safeJS }}</script>
 {{ end }}
 
-<link rel="stylesheet" href="{{ .Site.Params.KaTeXCDN }}/katex@{{ .Site.Params.KaTeXVersion }}/dist/katex.min.css" crossorigin="anonymous">
+<link rel="preload" href="{{ .Site.Params.KaTeXCDN }}/katex@{{ .Site.Params.KaTeXVersion }}/dist/katex.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="{{ .Site.Params.KaTeXCDN }}/katex@{{ .Site.Params.KaTeXVersion }}/dist/katex.min.css" crossorigin="anonymous"></noscript>
+
 <script defer src="{{ .Site.Params.KaTeXCDN }}/katex@{{ .Site.Params.KaTeXVersion }}/dist/katex.min.js" crossorigin="anonymous"></script>
 <script defer src="{{ .Site.Params.KaTeXCDN }}/katex@{{ .Site.Params.KaTeXVersion }}/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
 <!-- do not add onload attributes, breaks settings below -->
