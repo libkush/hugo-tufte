@@ -9,23 +9,13 @@
 <link rel="preload" href="/css/et-book/et-book-roman-line-figures/et-book-roman-line-figures.woff" as="font" type="font/woff" crossorigin/>
 <link rel="preload" href="/css/et-book/et-book-display-italic-old-style-figures/et-book-display-italic-old-style-figures.woff" as="font" type="font/woff" crossorigin/>
 
-<!-- Pure css -->
-<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" crossorigin="anonymous" /> -->
-
-<!-- Fonts -->
-<!-- <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans"> -->
-<!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface"> -->
-<!-- <link href='//fonts.googleapis.com/css?family=Raleway:400,200,100,700,300,500,600,800' rel='stylesheet' type='text/css'> -->
-
-<!-- Font Awesome -->
-<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.css"> -->
-
 {{ with resources.Get "scss/core.scss" | toCSS | minify }}
 <style>{{ .Content | safeCSS }}</style>
 {{ end }}
 
 {{ $ht_font_options := (dict "targetPath" "/css/fonts.css" "outputStyle" "compressed" "enableSourceMap" true) }}
 {{ $ht_fonts := resources.Get "scss/fonts.scss"| resources.ExecuteAsTemplate "main.scss" .  | resources.ToCSS $ht_font_options }}
+<link rel="preload" href="{{ $ht_fonts.Permalink | relURL }}" as="style" />
 <link rel="stylesheet" href="{{ $ht_fonts.Permalink | relURL }}">
 
 {{ $htoptions := (dict "targetPath" "/css/hugo-tufte.min.css" "outputStyle" "compressed" "enableSourceMap" true) }}
