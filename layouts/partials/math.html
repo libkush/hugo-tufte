@@ -3,16 +3,17 @@
 {{ with $script.Content }}
   <script>{{ . | safeJS }}</script>
 {{ end }}
+<link rel="preconnect" href="//cdnjs.cloudflare.com" />
 
-<link rel="preload" href="{{ .Site.Params.KaTeXCDN }}/katex@{{ .Site.Params.KaTeXVersion }}/dist/fonts/KaTeX_Main-Regular.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/{{ .Site.Params.KaTeXVersion }}/fonts/KaTeX_Main-Regular.woff2" as="font" type="font/woff2" crossorigin />
 
-<link rel="preload" href="{{ .Site.Params.KaTeXCDN }}/katex@{{ .Site.Params.KaTeXVersion }}/dist/katex.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="{{ .Site.Params.KaTeXCDN }}/katex@{{ .Site.Params.KaTeXVersion }}/dist/katex.min.css" crossorigin="anonymous"></noscript>
+<link rel="preload" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/{{ .Site.Params.KaTeXVersion }}/katex.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/{{ .Site.Params.KaTeXVersion }}/katex.min.css" crossorigin="anonymous"></noscript>
 
-<link rel="preload" href="{{ .Site.Params.KaTeXCDN }}/katex@{{ .Site.Params.KaTeXVersion }}/dist/katex.min.js" as="script" crossorigin />
-<link rel="preload" href="{{ .Site.Params.KaTeXCDN }}/katex@{{ .Site.Params.KaTeXVersion }}/dist/contrib/auto-render.min.js" as="script" crossorigin />
-<script defer src="{{ .Site.Params.KaTeXCDN }}/katex@{{ .Site.Params.KaTeXVersion }}/dist/katex.min.js" crossorigin="anonymous"></script>
-<script defer src="{{ .Site.Params.KaTeXCDN }}/katex@{{ .Site.Params.KaTeXVersion }}/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+<link rel="preload" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/{{ .Site.Params.KaTeXVersion }}/katex.min.js" as="script" crossorigin />
+<link rel="preload" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/{{ .Site.Params.KaTeXVersion }}/contrib/auto-render.min.js" as="script" crossorigin />
+<script defer src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/{{ .Site.Params.KaTeXVersion }}/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/{{ .Site.Params.KaTeXVersion }}/contrib/auto-render.min.js" crossorigin="anonymous"></script>
 <!-- do not add onload attributes, breaks settings below -->
 <script>
     document.addEventListener("DOMContentLoaded", function() {
