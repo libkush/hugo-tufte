@@ -1,7 +1,7 @@
-<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.1.0/modern-normalize.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+{{/*  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.1.0/modern-normalize.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <noscript>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.1.0/modern-normalize.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
-</noscript>
+</noscript>  */}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.1.0/modern-normalize.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
 
 <!-- Pure css -->
 <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" crossorigin="anonymous" /> -->
@@ -18,9 +18,12 @@
 <style>{{ .Content | safeCSS }}</style>
 {{ end }}
 
+{{ $ht_font_options := (dict "targetPath" "/css/fonts.css" "outputStyle" "compressed" "enableSourceMap" true) }}
+{{ $ht_fonts := resources.Get "scss/fonts.scss"| resources.ExecuteAsTemplate "main.scss" .  | resources.ToCSS $ht_font_options }}
+<link rel="stylesheet" href="{{ $ht_fonts.Permalink | relURL }}">
+
 {{ $htoptions := (dict "targetPath" "/css/hugo-tufte.min.css" "outputStyle" "compressed" "enableSourceMap" true) }}
 {{ $htstyle := resources.Get "scss/hugo-tufte.scss"| resources.ExecuteAsTemplate "main.scss" .  | resources.ToCSS $htoptions }}
-
 <link rel="preload" href="{{ $htstyle.Permalink | relURL }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="{{ $htstyle.Permalink | relURL }}"></noscript>
 
