@@ -14,17 +14,20 @@
 <!-- Font Awesome -->
 <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.css"> -->
 
+{{ with resources.Get "scss/core.scss" | toCSS | minify }}
+<style>{{ .Content | safeCSS }}</style>
+{{ end }}
+
 {{ $htoptions := (dict "targetPath" "/css/hugo-tufte.min.css" "outputStyle" "compressed" "enableSourceMap" true) }}
 {{ $htstyle := resources.Get "scss/hugo-tufte.scss"| resources.ExecuteAsTemplate "main.scss" .  | resources.ToCSS $htoptions }}
-<link rel="stylesheet" href="{{ $htstyle.Permalink | relURL }}">
-{{/*  <link rel="preload" href="{{ $htstyle.Permalink | relURL }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="{{ $htstyle.Permalink | relURL }}"></noscript>  */}}
+
+<link rel="preload" href="{{ $htstyle.Permalink | relURL }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="{{ $htstyle.Permalink | relURL }}"></noscript>
 
 {{ $ht_o_options := (dict "targetPath" "/css/hugo-tufte-options.min.css" "outputStyle" "compressed" "enableSourceMap" true) }}
 {{ $ht_o_style := resources.Get "scss/hugo-tufte-options.scss"| resources.ExecuteAsTemplate "main.scss" .  | resources.ToCSS $ht_o_options }}
-<link rel="stylesheet" href="{{ $ht_o_style.Permalink | relURL }}">
-{{/*  <link rel="preload" href="{{ $ht_o_style.Permalink | relURL }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="{{ $ht_o_style.Permalink | relURL }}"></noscript>  */}}
+<link rel="preload" href="{{ $ht_o_style.Permalink | relURL }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="{{ $ht_o_style.Permalink | relURL }}"></noscript>
 
 {{- $lazysizes := resources.Get "lazysizes.min.js" -}}
 <script src="{{ $lazysizes.Permalink }}" async=""></script>
