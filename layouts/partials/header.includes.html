@@ -1,7 +1,10 @@
 {{/*  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.1.0/modern-normalize.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <noscript>
 </noscript>  */}}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.1.0/modern-normalize.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+{{ with resources.GetRemote "https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.1.0/modern-normalize.min.css" | minify}}
+<style>{{ .Content | safeCSS }}</style>
+{{ end }}
 
 <!-- Pure css -->
 <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" crossorigin="anonymous" /> -->
