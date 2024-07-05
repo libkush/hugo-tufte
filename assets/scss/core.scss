@@ -13,6 +13,10 @@
     text-rendering: optimizeLegibility;
 }
 
+body {
+    text-align: left;
+}
+
 :focus {
     outline: medium auto currentColor;
     outline: medium auto invert;
