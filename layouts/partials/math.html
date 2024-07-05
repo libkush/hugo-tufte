@@ -1,6 +1,8 @@
-<link rel="preconnect" href="//cdnjs.cloudflare.com" />
+{{ $katex_fonts_options := (dict "targetPath" "/css/katex-fonts.css" "outputStyle" "compressed" "enableSourceMap" true) }}
+{{ $katex_fonts := resources.Get "scss/katex-fonts.scss"| resources.ExecuteAsTemplate "main.scss" .  | resources.ToCSS $katex_fonts_options }}
+<link rel="preload" href="{{ $katex_fonts.Permalink | relURL }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="{{ $katex_fonts.Permalink | relURL }}"></noscript>
 
-<link rel="preload" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/{{ .Site.Params.KaTeXVersion }}/fonts/KaTeX_Main-Regular.woff2" as="font" type="font/woff2" crossorigin />
-
-<link rel="preload" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/{{ .Site.Params.KaTeXVersion }}/katex.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/{{ .Site.Params.KaTeXVersion }}/katex.min.css" crossorigin="anonymous"></noscript>
+{{ $katex_css := resources.Get "css/katex.css"| resources.ToCSS | minify | fingerprint }}
+<link rel="preload" href="{{ $katex_css.Permalink | relURL }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="{{ $katex_css.Permalink | relURL }}"></noscript>
