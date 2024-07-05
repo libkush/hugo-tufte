@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ .Site.LanguageCode }}">
 
-{{- partialCached "header.html" . -}}
+{{- partial "header.html" . -}}
 
 <!-- Load Katex, if necessary. -->
 {{ if or .Params.math .IsHome }}
