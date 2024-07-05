@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="{{ .Site.LanguageCode }}">
+
 {{- partial "header.html" . -}}
-
-<body>
-
-{{ block "main" . }}{{ end }}
 
 <!-- Load Katex, if necessary. -->
 {{ if or .Params.math .IsHome }}
 {{ partial "math.html" . }}
 {{ end }}
+
+<body>
+
+{{ block "main" . }}{{ end }}
 
 </body>
 
