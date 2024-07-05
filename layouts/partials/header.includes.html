@@ -1,7 +1,3 @@
-{{/*  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.1.0/modern-normalize.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript>
-</noscript>  */}}
-
 {{ with resources.GetRemote "https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.1.0/modern-normalize.min.css" | minify}}
 <style>{{ .Content | safeCSS }}</style>
 {{ end }}
@@ -28,6 +24,4 @@
 <link rel="preload" href="{{ $ht_o_style.Permalink | relURL }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="{{ $ht_o_style.Permalink | relURL }}"></noscript>
 
-{{- $lazysizes := resources.Get "lazysizes.min.js" -}}
-<script src="{{ $lazysizes.Permalink }}" async=""></script>
 <!-- <link rel="stylesheet" href="{{ "/css/hugo-tufte-override.css" | relURL }}"> -->

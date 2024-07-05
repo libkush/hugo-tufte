@@ -38,7 +38,7 @@
 <!-- begin child elements -->
 {{- if eq $type "full" -}}<!-- child for full -->
   {{ with .Get "link" }}<a href="{{ . }}">{{ end }}
-  <img data-src="{{ $image.RelPermalink }}" width="{{ $image.Width }}" height="{{ $image.Height }}" alt="{{ $alt }}" class="lazyload">
+  <img loading="lazy" src="{{ $image.RelPermalink }}" width="{{ $image.Width }}" height="{{ $image.Height }}" alt="{{ $alt }}">
   {{ if .Get "link" }}</a>{{ end }}
   <figcaption>
 {{- else -}}<!--  child for margin or normal (begin) -->
@@ -51,7 +51,7 @@
 
   {{- if eq $type "margin" -}}<!-- margin image inside marginnote -->
     {{ with .Get "link" }}<a href="{{ . }}">{{ end }}
-    <img data-src="{{ $image.RelPermalink }}" width="{{ $image.Width }}" height="{{ $image.Height }}" alt="{{ $alt }}" class="lazyload">
+    <img loading="lazy" src="{{ $image.RelPermalink }}" width="{{ $image.Width }}" height="{{ $image.Height }}" alt="{{ $alt }}">
     {{ if .Get "link" }}</a>{{ end }}
   {{- end -}}
 
@@ -70,7 +70,7 @@
 
 {{ if (eq $type "normal") }}
   {{ with .Get "link" }}<a href="{{ . }}">{{ end }}
-  <img data-src="{{ $image.RelPermalink }}" width="{{ $image.Width }}" height="{{ $image.Height }}" alt="{{ $alt }}" class="lazyload">
+  <img loading="lazy" src="{{ $image.RelPermalink }}" width="{{ $image.Width }}" height="{{ $image.Height }}" alt="{{ $alt }}">
   {{ if .Get "link" }}</a>{{ end }}
 {{ end }}
 
