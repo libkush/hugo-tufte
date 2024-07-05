@@ -1,6 +1,6 @@
 {{ define "main" }}
 <article id="main" class="home-page">
-{{ partial "brand.html" . }}
+{{ partialCached "brand.html" . }}
 {{ with .Content }}
   <section>
   {{ . }}
@@ -50,6 +50,6 @@
 
 {{ end }}
 
-{{ partial "footer.html" . }}
+{{ partialCached "footer.html" . }}
 </article>
 {{ end }}

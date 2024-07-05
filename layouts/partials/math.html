@@ -1,8 +1,14 @@
-{{ $katex_fonts_options := (dict "targetPath" "/css/katex-fonts.css" "outputStyle" "compressed" "enableSourceMap" true) }}
-{{ $katex_fonts := resources.Get "scss/katex-fonts.scss"| resources.ExecuteAsTemplate "main.scss" .  | resources.ToCSS $katex_fonts_options }}
-<link rel="preload" href="{{ $katex_fonts.Permalink | relURL }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="{{ $katex_fonts.Permalink | relURL }}"></noscript>
+{{ $katex_fonts_options := dict
+    "targetPath" "/css/katex-fonts.css"
+    "outputStyle" "compressed"
+    "enableSourceMap" true
+}}
+{{ with resources.Get "scss/katex-fonts.scss"| resources.ExecuteAsTemplate "main.scss" .  | toCSS $katex_fonts_options | minify }}
+<link rel="preload" href="{{ .RelPermalink }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="{{ .RelPermalink }}"></noscript>
+{{ end }}
 
-{{ $katex_css := resources.Get "css/katex.css"| resources.ToCSS | minify | fingerprint }}
-<link rel="preload" href="{{ $katex_css.Permalink | relURL }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="{{ $katex_css.Permalink | relURL }}"></noscript>
+{{ with resources.Get "css/katex.css"| toCSS | minify }}
+<link rel="preload" href="{{ .RelPermalink }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="{{ .RelPermalink }}"></noscript>
+{{ end }}

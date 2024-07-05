@@ -12,5 +12,5 @@
 {{ if .Site.Params.touchicon }}
 <link rel="apple-touch-icon" href="{{ .Site.Params.touchicon | absURL }}" />
 {{ end }}
-  {{ partial "header.includes.html" . }}
+  {{ partialCached "header.includes.html" . }}
 </head>

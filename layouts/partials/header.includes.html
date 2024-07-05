@@ -5,23 +5,45 @@
 <link rel="preload" href="/css/et-book/et-book-roman-line-figures/et-book-roman-line-figures.woff" as="font" type="font/woff" crossorigin/>
 <link rel="preload" href="/css/et-book/et-book-display-italic-old-style-figures/et-book-display-italic-old-style-figures.woff" as="font" type="font/woff" crossorigin/>
 
-{{ with resources.Get "scss/core.scss" | toCSS | minify }}
+{{ $core_opts := dict
+    "transpiler" "dartsass"
+    "enableSourceMap" (not hugo.IsProduction)
+}}
+{{ with resources.Get "scss/core.scss" | toCSS $core_opts | minify }}
 <style>{{ .Content | safeCSS }}</style>
 {{ end }}
 
-{{ $ht_font_options := (dict "targetPath" "/css/fonts.css" "outputStyle" "compressed" "enableSourceMap" true) }}
-{{ $ht_fonts := resources.Get "scss/fonts.scss"| resources.ExecuteAsTemplate "main.scss" .  | resources.ToCSS $ht_font_options }}
-<link rel="preload" href="{{ $ht_fonts.Permalink | relURL }}" as="style" />
-<link rel="stylesheet" href="{{ $ht_fonts.Permalink | relURL }}">
+{{ $ht_font_options := dict 
+    "transpiler" "dartsass"
+    "targetPath" "/css/fonts.css" 
+    "outputStyle" "compressed" 
+    "enableSourceMap" (not hugo.IsProduction)
+}}
+{{ with resources.Get "scss/fonts.scss"| resources.ExecuteAsTemplate "main.scss" .  | toCSS $ht_font_options | minify }}
+<link rel="preload" href="{{ .RelPermalink }}" as="style" />
+<link rel="stylesheet" href="{{ .RelPermalink }}">
+{{ end }}
 
-{{ $htoptions := (dict "targetPath" "/css/hugo-tufte.min.css" "outputStyle" "compressed" "enableSourceMap" true) }}
-{{ $htstyle := resources.Get "scss/hugo-tufte.scss"| resources.ExecuteAsTemplate "main.scss" .  | resources.ToCSS $htoptions }}
-<link rel="preload" href="{{ $htstyle.Permalink | relURL }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="{{ $htstyle.Permalink | relURL }}"></noscript>
+{{ $ht_options := dict 
+    "transpiler" "dartsass"
+    "targetPath" "/css/hugo-tufte.min.css" 
+    "outputStyle" "compressed" 
+    "enableSourceMap" (not hugo.IsProduction) 
+}}
+{{ with resources.Get "scss/hugo-tufte.scss"| resources.ExecuteAsTemplate "main.scss" .  | toCSS $ht_options | minify }}
+<link rel="preload" href="{{ .RelPermalink }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="{{ .RelPermalink }}"></noscript>
+{{ end }}
 
-{{ $ht_o_options := (dict "targetPath" "/css/hugo-tufte-options.min.css" "outputStyle" "compressed" "enableSourceMap" true) }}
-{{ $ht_o_style := resources.Get "scss/hugo-tufte-options.scss"| resources.ExecuteAsTemplate "main.scss" .  | resources.ToCSS $ht_o_options }}
-<link rel="preload" href="{{ $ht_o_style.Permalink | relURL }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="{{ $ht_o_style.Permalink | relURL }}"></noscript>
+{{ $ht_o_options := dict
+    "transpiler" "dartsass"
+    "targetPath" "/css/hugo-tufte-options.min.css" 
+    "outputStyle" "compressed"
+    "enableSourceMap" (not hugo.IsProduction) 
+}}
+{{ with resources.Get "scss/hugo-tufte-options.scss"| resources.ExecuteAsTemplate "main.scss" .  | toCSS $ht_o_options | minify }}
+<link rel="preload" href="{{ .RelPermalink }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="{{ .RelPermalink }}"></noscript>
+{{ end }}
 
 <!-- <link rel="stylesheet" href="{{ "/css/hugo-tufte-override.css" | relURL }}"> -->

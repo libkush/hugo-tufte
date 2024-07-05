@@ -9,7 +9,7 @@
   {{ partial "content.header.html" . }}
   {{ partial "toc.html" . }}
   <section>{{ .Content }}</section>
-  <section>{{ partial "footer.html" . }}</section>
-  <section>{{ partial "nav.html" . }}</section>
+  <section>{{ partialCached "footer.html" . }}</section>
+  <section>{{ partialCached "nav.html" . }}</section>
 </article>
 {{ end }}
