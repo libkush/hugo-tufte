@@ -42,12 +42,13 @@ table:not(.lntable) tr td {
 }
 
 table.lntable {
+  border-spacing: 0;
+  padding: 0;
+
   td.lntd {
     padding: 0em;
   }
 
-  border-spacing: 0;
-  padding: 0;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -216,9 +217,8 @@ mjx-container[jax="CHTML"][display="true"],
 p:lang(zh),
 span:lang(zh),
 p:lang(ja),
-span:lang(ja),
-{
-font-size: 1.2rem;
+span:lang(ja) {
+  font-size: 1.2rem;
 }
 
 .sidenote:lang(zh),
