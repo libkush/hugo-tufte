@@ -1,0 +1,29 @@
+{{- $opts := dict 
+    "output" "html"
+    "displayMode" "false"
+-}}
+
+{{- if eq .Type "block" -}}
+    {{- $opts := dict 
+        "output" "html"
+        "displayMode" "true"
+    -}}
+    {{- with transform.ToMath .Inner $opts -}}
+        {{- with .Err -}}
+            {{ errorf "Failed to render KaTeX: %q. See %s" . $.Position }}
+        {{- else -}}
+        <p>
+            {{ . }}
+        </p>
+        {{- end -}}
+    {{- end -}}
+{{- else -}}
+    {{- with transform.ToMath .Inner $opts -}}
+        {{- with .Err -}}
+            {{ errorf "Failed to render KaTeX: %q. See %s" . $.Position }}
+        {{- else -}}
+        {{ . }}
+        {{- end -}}
+    {{- end -}}
+{{- end -}}
+
