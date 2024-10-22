@@ -8,7 +8,8 @@
 {{ end }}
 <section class="page-list">
 {{ $pgFilter1 := where .Site.RegularPages "Draft" false }}
-{{ $pgFilter2 := where .Site.RegularPages "Params.date" "!=" nil }}
+{{/*  {{ $pgFilter2 := where .Site.RegularPages "Params.date" "!=" nil }}  */}}
+{{ $pgFilter2 := where .Site.RegularPages ".Params.hidden" "!=" true}}
 {{ $pgFilter := $pgFilter1 | intersect $pgFilter2 }}
 {{ range (.Paginate $pgFilter).Pages }}
   <h2 class="content-title">

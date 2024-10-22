@@ -14,12 +14,14 @@
     <ul>
     <li>{{ .Key }} ({{ len .Pages }})</li>
       {{ range .Pages }}
+      {{ if ne .Params.hidden true }}
       <ul>
       <li>
         <span class="list-date">{{ .Date.Format "Jan 2" }} &middot;</span>
         <a href="{{ .RelPermalink }}">{{.Title}}</a>
       </li>
       </ul>
+      {{ end }}
       {{ end }}
     </li>
     </ul>
