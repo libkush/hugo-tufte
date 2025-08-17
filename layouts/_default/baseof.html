@@ -4,7 +4,7 @@
 {{- partial "header.html" . -}}
 
 <!-- Load Katex, if necessary. -->
-{{ if or .Params.math .IsHome }}
+{{ if or (.Page.Store.Get "hasMath") (.IsHome) }}
 {{ partial "math.html" . }}
 {{ end }}
 

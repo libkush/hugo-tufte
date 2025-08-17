@@ -8,21 +8,23 @@
         "output" "html"
         "displayMode" "true"
     -}}
-    {{- with transform.ToMath .Inner $opts -}}
+    {{- with try (transform.ToMath .Inner $opts) -}}
         {{- with .Err -}}
             {{ errorf "Failed to render KaTeX: %q. See %s" . $.Position }}
         {{- else -}}
         <p>
-            {{ . }}
+            {{ .Value }}
+            {{- $.Page.Store.Set "hasMath" true }}
         </p>
         {{- end -}}
     {{- end -}}
 {{- else -}}
-    {{- with transform.ToMath .Inner $opts -}}
+    {{- with try (transform.ToMath .Inner $opts) -}}
         {{- with .Err -}}
             {{ errorf "Failed to render KaTeX: %q. See %s" . $.Position }}
         {{- else -}}
-        {{ . }}
+            {{ .Value }}
+            {{- $.Page.Store.Set "hasMath" true }}
         {{- end -}}
     {{- end -}}
 {{- end -}}

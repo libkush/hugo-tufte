@@ -3,7 +3,7 @@
 {{- $ind := .Get "ind" | default .Site.Params.marginNoteInd -}}
 {{- $quality := .Get "quality" | default "photo" -}}
 {{- $imgurl := cast.ToString (.Get "src") -}}
-{{- $image := resources.GetRemote $imgurl -}}
+{{- $image := "" -}}
 <!-- get the image after processing -->
 {{- if hasPrefix $imgurl "http" -}}
 {{- $image = resources.GetRemote $imgurl -}}
